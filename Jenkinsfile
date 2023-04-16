@@ -23,5 +23,18 @@ pipeline {
                 }
             }
         }
+
+    stage('Dockerize') {
+            steps {
+                sshagent([cred]) {
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                        cd ${dir}
+                        docker build -t ${imagename}:latest .
+                        EOF
+                    """
+                }
+            }
+        }
+
 }
 }
