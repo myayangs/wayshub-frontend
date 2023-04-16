@@ -1,4 +1,4 @@
-def server = 'devops@103.13.206.190'
+def server = 'devops@103.37.125.64'
 def cred = 'appserver'
 def directory = '~/wayshub-frontend'
 def branch = 'main'
