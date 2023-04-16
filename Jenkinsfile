@@ -42,6 +42,7 @@ pipeline {
                 sshagent([cred]) {
                     sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                         cd ${dir}
+                        docker container stop ${imagename}:latest
                         docker run -d -p 3000:3000 ${imagename}:latest
                         exit
                         EOF
