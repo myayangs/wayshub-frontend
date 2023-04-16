@@ -37,5 +37,18 @@ pipeline {
             }
         }
 
+    stage('Deploy Docker') {
+            steps {
+                sshagent([cred]) {
+                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+                        cd ${dir}
+                        docker run -d -p 3000:3000 ${imagename}:latest
+                        exit
+                        EOF
+                    """
+                }
+            }
+        }
+
 }
 }
