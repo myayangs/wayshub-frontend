@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage ('git pull'){
             steps{
-                sshagent([secret]) {
+                sshagent([server]) {
                     sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                     cd ${directory}
                     git pull origin ${branch}
