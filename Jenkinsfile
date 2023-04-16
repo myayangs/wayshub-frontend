@@ -69,7 +69,7 @@ pipeline {
             }
         }
 
-        stage('Send Success Notification') {
+        stage('Push Notification Telegram') {
             steps {
                 sh """
                     curl -X POST 'https://api.telegram.org/bot6114599050:AAECjLMgu24zOHdeWty2NPzDuDOH28WpmYk/sendMessage' -d \
