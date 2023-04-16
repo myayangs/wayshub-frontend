@@ -1,20 +1,27 @@
-def server = 'devops@103.37.125.64'
-def cred = 'appserver'
-def directory = '~/wayshub-frontend'
-def branch = 'main'
+def branch = "main"
+def repo = "https://github.com/myayangs/wayshub-frontend.git"
+def cred = "appserver"
+def dir = "~/wayshub-frontend"
+def server = "devops@103.37.125.64"
+def imagename = "wayshub-fe"
+def dockerusername = "myayangs"
 
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage ('git pull'){
-            steps{
+
+    stages {
+        stage('Pull From Repository') {
+            steps {
                 sshagent([cred]) {
                     sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
-                    cd ${directory}
-                    git pull origin ${branch}
-                    exit
-                    EOF"""
+                        cd ${dir}
+                        git remote add origin ${repo} || git remote set-url origin ${repo}
+                        git pull origin ${branch}
+                        exit
+                        EOF
+                    """
                 }
             }
-        } }
+        }
+}
 }
