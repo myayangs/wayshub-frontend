@@ -54,5 +54,20 @@ pipeline {
             }
         }
 
+        stage('Push to Docker Hub') {
+            steps {
+               sshagent([cred]) {
+			    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+				    docker tag ${imagename}:latest ${dockerusername}/${imagename}:latest
+				    docker image push ${dockerusername}/${imagename}:latest
+				    docker image rm ${dockerusername}/${imagename}:latest
+				    docker image rm ${imagename}:latest
+				    exit
+                    EOF
+			"""
+		        }
+            }
+        }
+
 }
 }
