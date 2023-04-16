@@ -73,7 +73,7 @@ pipeline {
             steps {
                 sh """
                     curl -X POST 'https://api.telegram.org/bot6114599050:AAECjLMgu24zOHdeWty2NPzDuDOH28WpmYk/sendMessage' -d \
-		    'chat_id=234292329&text=Jenkins Status : Success(Wayshub Frontend)'
+		    'chat_id=234292329&text=Jenkins Status : Success (Wayshub Frontend)'
                 """
             }
         }
