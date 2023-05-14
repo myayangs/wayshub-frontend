@@ -1,5 +1,5 @@
 def branch = "main"
-def repo = "git@github.com:myayangs/wayshub-frontend.git"
+def repo = "https://github.com/myayangs/wayshub-frontend.git"
 def cred = "appserver"
 def dir = "~/wayshub-frontend"
 def server = "kel1@103.13.206.133"
@@ -68,15 +68,5 @@ pipeline {
 		        }
             }
         }
-
-        stage('Push Notification Telegram') {
-            steps {
-                sh """
-                    curl -X POST 'https://api.telegram.org/bot6114599050:AAECjLMgu24zOHdeWty2NPzDuDOH28WpmYk/sendMessage' -d \
-		    'chat_id=234292329&text=Jenkins Status : Success (Wayshub Frontend)'
-                """
-            }
-        }
-
 }
 }
